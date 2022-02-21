@@ -1,0 +1,534 @@
+#gameWindow {
+    display: none;
+    position: fixed;
+    top: 14px;
+    width: 288px !important;
+    height: 288px !important;
+    margin-left: -24px;
+}
+
+#debugHUD {
+    position: absolute;
+    display: block;
+    top: 100px;
+    z-index: 20;
+    color: white;
+    background: black;
+    opacity: 0.5;
+    font-size: 10px;
+}
+
+#HUD {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 320px;
+    z-index: 10;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#HUD #ticker {
+    position: absolute;
+    width: 96%;
+    min-height: 24px;
+    top: 94px;
+    margin: 2%;
+    padding: 0 2%;
+    color: #0c0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+    line-height: 1.2em;
+    background-color: rgba(0, 54, 0, 0.8);
+}
+
+#HUD #compass {
+    position: absolute;
+    top: 302px;
+    width: 240px;
+    height: 18px;
+    color: #0c0;
+    border: 2px solid black;
+    border-width: 2px 0;
+    background-color: #030;
+    overflow: hidden;
+}
+
+#HUD #compass div {
+    font-size: 12px;
+    line-height: 12px;
+    position: absolute;
+    text-align: center;
+}
+
+#HUD #compass #scale, #HUD #compass #pointers {
+    width: 960px;
+    height: 14px;
+}
+
+#HUD #compass #pointers div {
+    background-color: #0c0;
+    border: solid 2px #030;
+    border-radius: 50%;
+    margin-top: 1px;
+    width: 12px;
+    height: 12px;
+}
+
+#HUD #compass #destination_distance {
+    display: none;
+    width: 40px;
+    text-align: left;
+    background-color: #030;
+}
+
+#HUD #compass #north, #HUD #compass #east, #HUD #compass #south, #HUD #compass #west {
+    color: rgb(0, 139, 0);
+    width: 20px;
+}
+
+#HUD #compass #north {
+    left: 0;
+}
+
+#HUD #compass #east {
+    left: 250px;
+}
+
+#HUD #compass #south {
+    left: 500px;
+}
+
+#HUD #compass #west {
+    left: 750px;
+}
+
+#HUD #health, #HUD #altitude, #HUD #speed, #HUD #heat, #HUD #charge, #HUD #score, #HUD #objectives {
+    position: absolute;
+    top: 0;
+    height: 15px;
+    background-color: rgb(36, 17, 26);
+    font-size: 12px;
+    line-height: 12px;
+    border: 1px solid #090;
+}
+
+#HUD #health {
+    left: 0;
+    width: 89px;
+}
+
+#HUD #altitude {
+    left: 89px;
+    width: 61px;
+}
+
+#HUD #speed {
+    left: 150px;
+    width: 90px;
+}
+
+#HUD #throttle {
+    position: absolute;
+    height: 42px;
+    top: 15px;
+    left: 180px;
+    width: 58px;
+}
+
+#HUD #throttle img {
+    display: none;
+    position: absolute;
+}
+
+#HUD #heat {
+    top: 287px;
+    left: 0;
+    width: 88px;
+}
+
+#HUD #charge {
+    top: 287px;
+    left: 88px;
+    width: 99px;
+}
+
+#HUD #score {
+    top: 287px;
+    left: 187px;
+    width: 53px;
+    text-align: center;
+}
+
+#HUD #score #score_container {
+    position: absolute;
+    right: 5px;
+    text-align: right;
+}
+
+#HUD #score #score_container.flashing {
+    color: gold;
+    text-shadow: 1px -1px 0 brown, 1px 1px 0 brown;
+    font-size: 22px;
+}
+
+#HUD #score.kill {
+    background-color: darkgreen;
+}
+
+#HUD #score.hit {
+    background-color: darkred;
+}
+
+#HUD #health .label {
+    width: 40px;
+}
+
+#HUD #heat .label {
+    width: 31px;
+}
+
+#HUD #charge .label {
+    width: 42px;
+}
+
+#HUD #health #health_bar_container, #HUD #heat #heat_bar_container, #HUD #charge #charge_bar_container {
+    width: 46px;
+    height: 11px;
+    margin-top: 1px;
+    background-color: #060;
+}
+
+#HUD #heat #heat_bar_container {
+    width: 54px;
+    background-color: #600;
+}
+
+#HUD #charge #charge_bar_container {
+    width: 54px;
+    background-color: #036;
+}
+
+#HUD #health #health_bar, #HUD #heat #heat_bar, #HUD #charge #charge_bar {
+    width: 100%;
+    height: 11px;
+    background-color: #0c0;
+}
+
+#HUD #heat #heat_bar {
+    width: 0;
+    background-color: #c30;
+}
+
+#HUD #charge #charge_bar {
+    width: 0;
+    background-color: #09c;
+}
+
+#HUD #health div, #HUD #altitude div, #HUD #speed div, #HUD #heat div, #HUD #charge div {
+    float: left;
+}
+
+#HUD div.label {
+    padding-left: 2px;
+}
+
+#HUD #altitude .label {
+    width: 16px;
+}
+
+#HUD #speed .label {
+    width: 38px;
+}
+
+#HUD #altitude .value, #HUD #speed .value {
+    text-align: right;
+    width: 26px;
+}
+
+#HUD #objectives {
+    left: 2px;
+    width: 176px;
+    height: auto;
+    min-height: 14px;
+    max-height: 56px;
+    padding: 2px 0;
+}
+
+#HUD #objectives, #HUD #radar {
+    position: absolute;
+    top: 17px;
+    overflow: hidden;
+    background-color: rgba(0, 54, 0, 0.7);
+    border: 1px solid rgb(36, 17, 26);
+}
+
+#HUD #objectives .title {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: #0f0;
+}
+
+#HUD #objectives ul, #HUD #objectives li {
+    text-indent: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#HUD #objectives ul {
+    padding-bottom: 2px;
+}
+
+#HUD #objectives li {
+    width: 100%;
+    text-align: center;
+    list-style: none;
+}
+
+#HUD #objectives li.complete {
+    display: none;
+}
+
+#HUD #radar {
+    top: 225px;
+    right: 2px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    z-index: 11;
+}
+
+#HUD #radar div {
+    position: absolute;
+    background-color: #0f0;
+    border-radius: 50%;
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+}
+
+#HUD #radar div.center {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    left: 50%;
+    top: 50%;
+    margin: -2px 0 0 -2px;
+    background-color: white;
+    z-index: 20;
+}
+
+#HUD #radar #radar_flash {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 5%;
+    left: 5%;
+    background: none;
+    border: 2px solid #0f0;
+    border-radius: 50%;
+    z-index: 30;
+}
+
+#HUD #radar .turret {
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    z-index: 15;
+}
+
+#HUD #radar .fighter {
+    width: 10px;
+    height: 10px;
+    margin: -5px 0 0 -5px;
+    background-color: #090;
+    border: 1px solid #0f0;
+    z-index: 15;
+}
+
+#HUD #radar .fortress {
+    background-color: #090;
+    border: 1px solid #0f0;
+    z-index: 12;
+}
+
+#HUD #radar .fortress.skyland {
+    width: 34px;
+    height: 34px;
+    margin: -17px 0 0 -17px;
+}
+
+#HUD #radar .fortress.tank {
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+}
+
+#HUD #radar .destination, #HUD #radar .boss {
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    background-color: #060;
+    border: 1px solid #0f0;
+    z-index: 12;
+}
+
+#HUD #targetFrame {
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 2px solid #0f0;
+    position: fixed;
+}
+
+#HUD #crosshair {
+    width: 4px;
+    height: 4px;
+    margin: -2px 0 0 -2px;
+    background-color: #0f0;
+    position: fixed;
+}
+
+#HUD #scoreSprites {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+#HUD #scoreSprites .score {
+    display: none;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-size: 2em;
+    text-align: center;
+    text-shadow: -1px -1px 0 brown, 1px -1px 0 brown, -1px 1px 0 brown, 1px 1px 0 brown;
+    color: gold;
+}
+
+#HUD #scoreSprites .score.fading {
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    color: #fff;
+}
+
+#HUD #benchmarkHUD {
+    height: 60px;
+    width: 170px;
+}
+
+#HUD #benchmarkHUD, #HUD #multiplayerHUD {
+    position: absolute;
+    left: 2px;
+    top: 17px;
+    font-size: 1em;
+    line-height: 1em;
+    color: #0f0;
+    background-color: rgba(0, 54, 0, 0.7);
+    border: 1px solid rgb(36, 17, 26);
+}
+
+#HUD #multiplayerHUD {
+    width: 185px;
+    font-size: 0.7em;
+    line-height: 1.2em;
+}
+
+#HUD #multiplayerHUD #mp_latency {
+    font-size: 0.8em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+}
+
+#HUD #multiplayerHUD #mp_bandwidth {
+    font-size: 0.8em;
+}
+
+#HUD #multiplayerHUD #mp_playerNames div {
+    color: #08f;
+    margin-top: -20px;
+    transform: translate(-50%, 0);
+    position: fixed;
+    white-space: nowrap;
+}
+
+#HUD #multiplayerHUD #mp_players span {
+    color: yellowgreen;
+    display: inline-block;
+}
+
+#HUD #multiplayerHUD #mp_players span.this {
+    color: #0f0;
+}
+
+#HUD #multiplayerHUD #mp_players .inactive {
+    color: #380;
+}
+
+#HUD #multiplayerHUD #mp_players span img {
+    float: left;
+    width: 16px;
+    height: 16px;
+}
+#HUD #benchmarkHUD.finished {
+    color: white;
+}
+
+#HUD #benchmarkHUD #benchmark_fps, #HUD #benchmarkHUD #benchmark_time, #HUD #benchmarkHUD #benchmark_aa, #HUD #benchmarkHUD #benchmark_shadows, #HUD #benchmarkHUD #benchmark_soundfx {
+    width: 100%;
+    height: 20px;
+}
+
+#HUD #benchmarkHUD #benchmark_version {
+    position: absolute;
+    right: 2px;
+    text-align: right;
+    font-size: 0.8em;
+}
+
+#HUD #benchmarkHUD #benchmark_aa {
+    width: 23%;
+    float: left;
+    padding-left: 2px;
+}
+
+#HUD #benchmarkHUD #benchmark_shadows {
+    width: 41%;
+    float: left;
+}
+
+#HUD #benchmarkHUD #benchmark_soundfx {
+    width: 35%;
+    float: left;
+}
+
+#HUD #benchmarkHUD #benchmark_fps div, #HUD #benchmarkHUD #benchmark_time div {
+    width: 40%;
+    float: left;
+}
+
+#HUD #benchmarkHUD #bench_fps_value, #HUD #benchmarkHUD #bench_time_value {
+    text-align: right;
+    padding-right: 10px;
+}
+
+#HUD #benchmarkHUD #benchmark_aa div, #HUD #benchmarkHUD #benchmark_shadows div, #HUD #benchmarkHUD #benchmark_soundfx div {
+    font-size: 0.8em;
+    float: left;
+}
+
+#HUD #benchmarkHUD #benchmark_aa #bench_aa_value, #HUD #benchmarkHUD #benchmark_shadows #bench_shadow_value, #HUD #benchmarkHUD #benchmark_soundfx #bench_soundfx_value {
+    padding-left: 2px;
+}
+
+#HUD #objective_timer {
+    display: none;
+    width: 100%;
+    margin: 5px 0;
+    text-align: center;
+    font-size: 2em;
+}

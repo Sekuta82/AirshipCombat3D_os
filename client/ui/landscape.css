@@ -1,0 +1,119 @@
+/* KaiOS landscape devices (320x240) */
+
+@media screen and (orientation: landscape) {
+    body#page {
+        width: 320px;
+        height: 208px;
+    }
+    #views {
+        width: 320px;
+        height: 208px;
+    }
+    #softkeyBar {
+        width: 320px;
+        top: 207px;
+    }
+    #controls, #benchmark_controls {
+        width: 320px;
+    }
+    #controls .portrait, #benchmark_controls .portrait {
+        display: none;
+    }
+    #controls .landscape, #benchmark_controls .landscape {
+        display: block;
+    }
+    .view .grid, .view .list {
+        width: 305px;
+        /* height: 305px; */
+    }
+    .view .list#stageList h3 {
+        top: 55%;
+        /* margin: -20% 0 0 100vw; */
+    }
+    #gameWindow {
+        top: -60px;
+        margin-left: 16px;
+    }
+    #HUD {
+        width: 320px;
+        height: 240px;
+    }
+    #HUD #ticker {
+        width: 82%;
+        top: 55px;
+        left: 7%;
+    }
+    #HUD #compass {
+        top: 224px;
+        /* width: 288px; */
+        height: 16px;
+        left: 16px;
+        border-bottom: none;
+    }
+    #HUD #radar {
+        top: 0;
+        right: 1px;
+        height: 50px;
+        border-radius: 0;
+        border: 1px solid #090;
+        background-color: rgba(0, 54, 0, 1);
+    }
+    #HUD #radar #radar_flash {
+        border-radius: 0;
+        top: 6%;
+    }
+    #HUD #health {
+        transform-origin: 0 0;
+        transform: rotate(-90deg);
+        top: 179px;
+        left: 0;
+    }
+    #HUD #altitude {
+        transform-origin: 0 0;
+        transform: rotate(-90deg);
+        top: 240px;
+        left: 0;
+    }
+    #HUD #speed {
+        transform-origin: 0 0;
+        transform: rotate(-90deg);
+        top: 90px;
+        left: 0;
+    }
+    #HUD #throttle {
+        left: 16px;
+        top: 0;
+    }
+    #HUD #heat {
+        transform-origin: 0 0;
+        transform: rotate(90deg);
+        top: 50px;
+        left: 319px;
+        width: 74px;
+    }
+    #HUD #heat #heat_bar_container {
+        width: 40px;
+    }
+    #HUD #charge {
+        transform-origin: 0 0;
+        transform: rotate(90deg);
+        top: 124px;
+        left: 319px;
+    }
+    #HUD #score {
+        top: 223px;
+        left: 256px;
+        width: 63px;
+        height: 17px;
+        font-size: 14px;
+        line-height: 14px;
+    }
+    #HUD #objectives {
+        top: 2px;
+        left: 77px;
+    }
+    #HUD #benchmarkHUD {
+        left: 80px;
+        top: 0;
+    }
+}

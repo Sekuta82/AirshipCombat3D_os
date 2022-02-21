@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+
+    <title>AirshipCombat3D OpenSource</title>
+    <link rel="stylesheet" href="ui/main.css" type="text/css" />
+    <link rel="stylesheet" href="ui/game.css" type="text/css" />
+    <link rel="stylesheet" href="ui/landscape.css" type="text/css" />
+    <script src="code/app.js" defer></script>
+    <script src="code/globals.js" defer></script>
+    <script src="code/settings.js" defer></script>
+    <script src="code/KaiOS.js" defer></script>
+    <script src="code/shaders.js" defer></script>
+    <script src="code/levelList.js" defer></script>
+    <script src="code/levels.js" defer></script>
+    <script src="code/assetManager.js" defer></script>
+    <script src="code/audio.js" defer></script>
+    <script src="code/player.js" defer></script>
+    <script src="code/turrets.js" defer></script>
+    <script src="code/rockets.js" defer></script>
+    <script src="code/fortresses.js" defer></script>
+    <script src="code/boss.js" defer></script>
+    <script src="code/fighter.js" defer></script>
+    <script src="code/portals.js" defer></script>
+    <script src="code/asteroids.js" defer></script>
+    <script src="code/decalCanvas.js" defer></script>
+    <script src="code/hud.js" defer></script>
+    <script src="code/game.js" defer></script>
+    <script src="code/leaderboard.js" defer></script>
+    <script src="code/mp_client.js" defer></script>
+    <script src="code/mp_lobby.js" defer></script>
+    <script src="code/libs/kaiads.v4.min.js" defer></script>
+</head>
+
+<body>
+    <script src="code/libs/three.min.js"></script>
+    <script src="code/libs/GLTFLoader.js"></script>
+    <canvas id="gameWindow"></canvas>
+    <div id="HUD">
+        <div id="crosshair"></div>
+        <div id="targetFrame"></div>
+        <div id="scoreSprites"></div>
+        <div id="health">
+            <div class="label">health</div>
+            <div id="health_bar_container">
+                <div id="health_bar"></div>
+            </div>
+        </div>
+        <div id="altitude">
+            <div class="label">alt </div>
+            <div class="value" id="altitude_value">0</div class="value">
+            <div class="unit"> m</div>
+        </div>
+        <div id="speed">
+            <div class="label">speed </div>
+            <div class="value" id="speed_value">0</div>
+            <div class="unit"> kph</div>
+        </div>
+        <div id="throttle">
+            <img src="ui/hud/throttle0.png" />
+            <img src="ui/hud/throttle1.png" />
+            <img src="ui/hud/throttle2.png" />
+            <img src="ui/hud/throttle3.png" />
+            <img src="ui/hud/throttle4.png" />
+            <img src="ui/hud/throttle5.png" />
+            <img src="ui/hud/throttle6.png" />
+            <img src="ui/hud/throttle7.png" />
+        </div>
+        <div id="compass">
+            <div id="scale">
+                <div id="north">N</div>
+                <div id="east">E</div>
+                <div id="south">S</div>
+                <div id="west">W</div>
+            </div>
+            <div id="destination_distance"></div>
+            <div id="pointers"></div>
+        </div>
+        <div id="heat">
+            <div class="label">heat</div>
+            <div id="heat_bar_container">
+                <div id="heat_bar"></div>
+            </div>
+        </div>
+        <div id="charge">
+            <div class="label">charge</div>
+            <div id="charge_bar_container">
+                <div id="charge_bar"></div>
+            </div>
+        </div>
+        <div id="score">
+            <div id="score_container">0</div>
+        </div>
+        <div id="objectives">
+            <div class="title">mission objectives <span id="objective_count"></span></div>
+            <ul id="objectives_entries">
+            </ul>
+            <div id="objective_timer"></div>
+        </div>
+        <div id="ticker"></div>
+        <div id="radar">
+            <div class="center"></div>
+            <div id="radar_flash"></div>
+        </div>
+        <div id="benchmarkHUD">
+            <div id="benchmark_version">0.0.0</div>
+            <div id="benchmark_fps">
+                <div id="bench_fps_value">...</div>
+                <div>fps</div>
+            </div>
+            <div id="benchmark_time">
+                <div id="bench_time_value"></div>
+                <div>seconds</div>
+            </div>
+            <div id="benchmark_aa">
+                <div>aa</div>
+                <div id="bench_aa_value"></div>
+            </div>
+            <div id="benchmark_shadows">
+                <div>shadow</div>
+                <div id="bench_shadow_value"></div>
+            </div>
+            <div id="benchmark_soundfx">
+                <div>sound</div>
+                <div id="bench_soundfx_value"></div>
+            </div>
+        </div>
+        <div id="multiplayerHUD">
+            <div id="mp_bandwidth"></div>
+            <div id="mp_status"></div>
+            <div id="mp_latency"></div>
+            <div id="mp_players"></div>
+            <div id="mp_client" class="hidden"></div>
+            <div id="mp_positions" class="hidden"></div>
+            <div id="mp_instruct"></div>
+
+            <div id="mp_playerNames"></div>
+        </div>
+    </div>
+    <div id="debugHUD"></div>
+
+    <div id="views">
+        <div class="view" id="viewLoading">
+            <div id="controls">
+                <img class="portrait" src="ui/menu/controls.gif" alt="controls portrait" />
+                <img class="landscape" src="ui/menu/controls_landscape.gif" alt="controls landscape" />
+            </div>
+            <div id="benchmark_controls">
+                <img class="portrait" src="ui/menu/controls_benchmark.png" alt="controls portrait" />
+                <img class="landscape" src="ui/menu/controls_landscape_landscape.png" alt="controls landscape" />
+            </div>
+        </div>
+        <div class="view" id="viewMenu">
+            <h1>Airship Combat 3D</h1>
+            <div id="totalScore">0</div>
+            <button class="navItem" tabIndex="0" data-goToViewName="viewStages">levels</button>
+            <button class="navItem locked" tabIndex="10" id="button_resume" data-function="resume">resume</button>
+            <button class="navItem locked" tabIndex="20" id="button_reset" data-function="reset">restart</button>
+            <button class="navItem" tabIndex="30" data-goToViewName="onlineLobby">online game</button>
+            <button class="navItem" tabIndex="40" data-goToViewName="viewLeaderboard">leaderboard</button>
+            <button class="navItem" tabIndex="50" data-function="benchmark">benchmark</button>
+            <button class="navItem" tabIndex="60" data-goToViewName="viewSettings">settings</button>
+            <button class="navItem" tabIndex="70" data-href="about.html">about</button>
+            <button class="navItem" tabIndex="80" data-function="quit">quit</button>
+        </div>
+        <div class="view" id="viewStages">
+            <h1>Stages</h1>
+            <div id="stageList" class="list"></div>
+        </div>
+        <div class="view" id="viewLevels">
+            <h1>Levels</h1>
+            <div id="levelGrid" class="grid"></div>
+        </div>
+        <div class="view" id="viewSettings">
+            <h1>settings</h1>
+            <h2>graphics</h2>
+            <fieldset>
+                <legend class="navItem" tabIndex="0">anti-aliasing</legend>
+                <select id="settings_aa">
+                    <option value='true' selected>on</option>
+                    <option value='false'>off</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <legend class="navItem" tabIndex="1">shadows</legend>
+                <select id="settings_shadows">
+                    <option value='true' selected>on</option>
+                    <option value='false'>off</option>
+                </select>
+            </fieldset>
+            <h2>controls</h2>
+            <fieldset>
+                <legend class="navItem" tabIndex="10">invert axis</legend>
+                <select id="settings_invert">
+                    <option value='true' selected>on</option>
+                    <option value='false'>off</option>
+                </select>
+            </fieldset>
+            <h2>audio</h2>
+            <fieldset>
+                <legend class="navItem" tabIndex="20">sound fx</legend>
+                <select id="settings_soundfx">
+                    <option value='true'>on</option>
+                    <option value='false' selected>off</option>
+                </select>
+            </fieldset>
+            <h2>game</h2>
+            <fieldset>
+                <button class="navItem" tabIndex="30" data-function="deleteProgress">reset game</button>
+            </fieldset>
+        </div>
+        <div class="view" id="viewGameOver">
+            <h1>game over</h1>
+            <button class="navItem" tabIndex="0" data-function="reset">restart</button>
+            <button class="navItem" tabIndex="10" data-goToViewName="viewMenu">main menu</button>
+            <button class="navItem" tabIndex="20" data-function="quit">quit</button>
+        </div>
+        <div class="view" id="viewMissionCompleted">
+            <h1>mission completed</h1>
+            <h2 id="levelScore"></h2>
+            <button class="navItem" tabIndex="0" data-function="nextLevel">next level</button>
+            <button class="navItem" tabIndex="10" data-goToViewName="viewMenu">main menu</button>
+            <button class="navItem" tabIndex="20" data-function="quit">quit</button>
+        </div>
+        <div class="view" id="viewLeaderboard">
+            <h1>leaderboard</h1>
+            <div id="lb_message">
+            </div>
+            <div id="lb_list">
+                <h2 class="navItem" tabIndex="0">Online Takedowns</h2>
+                <div class="score" id="lb_online">loading score...</div>
+                <h2 class="navItem" tabIndex="10">Grasslands Campaign</h2>
+                <div class="score" id="lb_grasslands">loading score...</div>
+                <h2 class="navItem" tabIndex="20">Volcano Campaign</h2>
+                <div class="score" id="lb_lava">loading score...</div>
+                <h2 class="navItem" tabIndex="30">Lindworm Campaign</h2>
+                <div class="score" id="lb_desert">loading score...</div>
+                <h2 class="navItem" tabIndex="40">Another World Campaign</h2>
+                <div class="score" id="lb_space">loading score...</div>
+                <button class="navItem" tabIndex="50" data-href="privacy.html">read privacy policy</button>
+            </div>
+        </div>
+        <div class="view" id="onlineLobby">
+            <h1>play online</h1>
+            <div id="lobby_message">connecting...</div>
+            <fieldset>
+                <legend class="navItem" tabIndex="0">Server</legend>
+                <select id="lobby_server">
+                    <option value='0' selected>Europe</option>
+                    <option value='1'>USA</option>
+                </select>
+            </fieldset>
+            <div id="lobby_playerCount"></div>
+            <table id="lobby_list">
+                <!-- tabIndex 10 - 69 -->
+                <tbody id="lobby_list_body"></tbody>
+            </table>
+            <fieldset>
+                <legend class="navItem" tabIndex="70">Level</legend>
+                <select id="lobby_stage">
+                    <option value='0' selected>Grasslands</option>
+                    <option value='1'>Volcano</option>
+                    <option value='2'>Lindworm</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <button class="navItem" tabIndex="80" data-function="mp_name">Enter Player Name</button>
+                <div id="lobby_playerName"></div>
+            </fieldset>
+            <fieldset id="lobby_badges">
+                <legend class="navItem" tabIndex="90">My Awards</legend>
+                <div id="lobby_badge_container"></div>
+                <button class="navItem" tabIndex="100" data-goToViewName="awards">Info</button>
+            </fieldset>
+        </div>
+        <div class="view" id="awards">
+            <h1>Online Awards</h1>
+            <p>You can earn these awards during online battles. Other players will see your badges.</p>
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <strong class="navItem" tabIndex="0">Score 100+</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="./ui/badges/profile/badge_rank_1.png" /></td>
+                    <td>
+                        At least 100 takedowns
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <strong class="navItem" tabIndex="10">Score 500+</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="./ui/badges/profile/badge_rank_2.png" /></td>
+                    <td>
+                        At least 500 takedowns
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <strong class="navItem" tabIndex="20">Score 1000+</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="./ui/badges/profile/badge_rank_3.png" /></td>
+                    <td>
+                        At least 1000 takedowns
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <strong class="navItem" tabIndex="30">Score 5000+</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="./ui/badges/profile/badge_rank_4.png" /></td>
+                    <td>
+                        At least 5000 takedowns
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <strong class="navItem" tabIndex="40">Highest Score</strong>
+                    </td>
+                </tr>
+                <td><img src="./ui/badges/profile/badge_leader.png" /></td>
+                <td>
+                    The player with the highest score
+                </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="softkeyBar">
+        <button id="bar-back"></button><button id="bar-action"></button><button id="bar-options"></button>
+    </div>
+    <div id="systemMessage">system message</div>
+
+    <!-- preload images -->
+    <div style="display: none;">
+        <img src="ui/menu/stage_grasslands.jpg" /> <img src="ui/menu/stage_lava.jpg" /> <img
+            src="ui/menu/stage_desert.jpg" /> <img src="ui/menu/stage_space.jpg" />
+    </div>
+</body>
+
+</html>

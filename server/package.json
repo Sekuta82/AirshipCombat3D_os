@@ -1,0 +1,22 @@
+{
+  "name": "airshipcombat3d_server",
+  "version": "0.0.1",
+  "description": "AirshipCombat 3D Multiplayer Server",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "christian-waadt",
+  "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
+  "dependencies": {
+    "bad-words": "^3.0.4",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.7",
+    "three": "^0.124.0",
+    "ws": "^7.4.2"
+  }
+}

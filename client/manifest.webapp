@@ -1,0 +1,42 @@
+{
+  "name": "AirshipCombat3D OpenSource",
+  "version": "1.4.23",
+  "description": "The best 3D action game on KaiOS can now be played online! Get inside the airship and enjoy challanging battles in the skies. Play the single-player campaign or challange your friends in an online multiplayer battle. Works best with 512MB of RAM. Online functions require device-sotrage access to manage the player profile.",
+  "subtitle": "3D online multiplayer game",
+  "launch_path": "/index.html",
+  "origin": "app://AirshipCombat3D_os",
+  "icons": {
+    "56": "/icons/AirshipCombat3D_56.png",
+    "112": "/icons/AirshipCombat3D_112.png"
+  },
+  "theme_color": "#65ACFF",
+  "developer": {
+    "name": "Christian Waadt",
+    "url": "https://www.ays-arts.de"
+  },
+  "type": "privileged",
+  "fullscreen": "true",
+  "locales": {
+    "en-US": {
+      "name": "AirshipCombat3D",
+      "description": "The best 3D action game on KaiOS can now be played online! Get inside the airship and enjoy challanging battles in the skies. Play the single-player campaign or challange your friends in an online multiplayer battle. Works best with 512MB of RAM. Online functions require device-sotrage access to manage the player profile.",
+      "subtitle": "3D online multiplayer game"
+    }
+  },
+  "default_locale": "en-US",
+  "orientation": "default",
+  "permissions": {
+    "spatialnavigation-app-manage": {
+        "description": "Enables the cursor within the app"
+    },
+    "feature-detection": {
+        "description": "Check device capabilities"
+    },
+    "mobiledata": {},
+    "wifidata": {},
+    "device-storage:sdcard": { 
+        "access": "readwrite",
+        "description": "Storing player profile"
+      }
+  }
+}

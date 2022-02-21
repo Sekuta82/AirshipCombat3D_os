@@ -1,0 +1,628 @@
+@font-face {
+    font-family: AeroviasBrasilNF;
+    src: url(AeroviasBrasilNF.otf);
+}
+
+* {
+    outline: 0 ! important;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    color: white;
+    font-style: normal;
+    font-weight: normal;
+    overflow: hidden;
+    font-size: 1.7em;
+}
+
+body#page {
+    width: 240px;
+    height: 288px;
+    overflow: hidden;
+    font-family: AeroviasBrasilNF, sans-serif;
+    background-image: url(menu/background.jpg);
+    background-position: center;
+    color: white;
+    font-style: normal;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 1.7em;
+}
+
+button, select, input, legend {
+    background: none;
+    border: none;
+    -moz-appearance: none;
+    appearance: none;
+    overflow: hidden;
+    font-family: AeroviasBrasilNF, sans-serif;
+    font-size: 1.0em;
+}
+
+.navItem {
+    display: block;
+    float: left;
+    color: grey;
+    background-color: rgb(48, 19, 32);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 0 3% 0;
+}
+
+.navItem.locked {
+    background-color: #222;
+}
+
+html, canvas {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#ad-container {
+    float: left;
+}
+
+#ad-container>div {
+    outline: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#totalScore {
+    width: 100%;
+    text-align: center;
+    color: silver;
+    font-size: 0.8em;
+    margin-bottom: 0.2em;
+}
+
+#views {
+    position: absolute;
+    top: 0;
+    width: 240px;
+    height: 288px;
+    z-index: 100;
+    overflow: hidden;
+    font-family: AeroviasBrasilNF, sans-serif;
+    background-image: url(menu/background.jpg);
+    background-position: center;
+}
+
+body.withAd #views {
+    top: 54px;
+    height: 234px;
+}
+
+body#page.withAd {
+    margin-top: 54px;
+    height: 234px;
+}
+
+.view {
+    overflow: -moz-hidden-unscrollable;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 3%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#page .pageContent {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#page .pageContent ul {
+    padding: 0 5% 0 10%;
+}
+
+#page .pageContent li {
+    font-size: 0.5em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#page .pageContent td {
+    vertical-align: top;
+}
+
+.view * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(168, 131, 30);
+    font-size: 1.2em;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    display: block;
+    width: 100%;
+    float: left;
+    text-align: center;
+    background-color: rgb(48, 19, 32);
+    color: rgb(168, 131, 30);
+    font-size: 1.0em;
+    font-weight: normal;
+    margin: 0.2em 0 0 0;
+}
+
+#page h2 {
+    background: none;
+    font-size: 0.8em;
+    margin: 0;
+}
+
+h2#levelScore {
+    margin: 0 0 3% 0;
+    font-size: 0.9em;
+    color: white;
+    background: none;
+}
+
+h2#levelScore .finalScore {
+    font-size: 1.2em;
+    color: goldenrod;
+}
+
+h3 {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 5% 0;
+    font-weight: normal;
+    color: rgb(168, 131, 30);
+}
+
+p {
+    padding: 0;
+    margin: 0 0 0.6em 0;
+    font-size: 0.8em;
+    line-height: 1.4em;
+    text-align: center;
+}
+
+.view select, .view input {
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0;
+    background-color: #CCCCCC;
+    color: #323232;
+    height: 1.2em;
+}
+
+.view select:focus, .view input:focus, .navItem:focus {
+    background-color: rgb(168, 131, 30);
+    color: rgb(66, 32, 1);
+}
+
+.navItem.locked:focus {
+    background-color: grey;
+    color: rgb(66, 32, 1);
+}
+
+.view .grid, .view .list {
+    width: 225px;
+    height: 225px;
+}
+
+.view .grid .navItem, .view .list .navItem {
+    padding: 2%;
+    margin: 0;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.view .list .navItem {
+    position: relative;
+    padding: 0;
+    height: 160px;
+    background-size: cover;
+}
+
+.view .list#stageList h3 {
+    position: absolute;
+    top: 45%;
+    margin: -20% 0 0 100vw;
+    text-shadow: 2px 2px black;
+    color: white;
+    transition: margin-left .5s ease-in-out;
+}
+
+.view .list#stageList .navItem:focus h3 {
+    margin-left: 0;
+    transition: margin-left .5s ease-in-out;
+}
+
+.view .list#stageList .navItem p {
+    display: block;
+    width: 100%;
+    font-size: 1.2em;
+    position: absolute;
+    margin: 0 0 0 100vw;
+    bottom: 0;
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+.view .list#stageList .navItem:focus p {
+    margin-left: 0;
+    transition: margin-left .3s ease-in-out;
+}
+
+.view .list#stageList .navItem:focus {
+    border-width: 5px;
+}
+
+.view .list#stageList .navItem.locked {
+    opacity: 0.5;
+}
+
+.view .list#stageList .navItem.grasslands {
+    background-image: url(menu/stage_grasslands.jpg);
+}
+
+.view .list#stageList .navItem.lava {
+    background-image: url(menu/stage_lava.jpg);
+}
+
+.view .list#stageList .navItem.desert {
+    background-image: url(menu/stage_desert.jpg);
+}
+
+.view .list#stageList .navItem.space {
+    background-image: url(menu/stage_space.jpg);
+}
+
+.view .grid .navItem:focus, .view .list .navItem:focus {
+    border-color: rgb(168, 131, 30);
+}
+
+.view .grid .navItem:focus h3 {
+    color: white;
+}
+
+.view .grid .navItem.locked:focus, .view .list .navItem.locked:focus {
+    background-color: #555;
+}
+
+.view a.navItem {
+    padding: 0;
+    height: auto;
+    background: none;
+    border: none;
+}
+
+.view .grid h3 {
+    margin: 0;
+    font-size: 1em;
+}
+
+.view .grid span {
+    display: block;
+    width: 100%;
+    float: left;
+}
+
+.view .list h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+#page p {
+    font-size: 0.5em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#page td p {
+    text-align: left;
+}
+
+#page a {
+    color: white;
+}
+
+#page a:hover {
+    color: rgb(168, 131, 30);
+}
+
+.view#viewAbout #licenseText p {
+    font-size: 0.38em;
+    line-height: 1em;
+    text-align: left;
+}
+
+fieldset {
+    width: 46%;
+    float: left;
+    padding: 0;
+    margin: 2%;
+}
+
+#softkeyBar {
+    border-top: 1px solid rgb(168, 131, 30);
+    background-color: black;
+    position: fixed;
+    top: 287px;
+    width: 240px;
+    height: 33px;
+    line-height: 150%;
+    z-index: 100;
+    font-size: 0.8em;
+}
+
+#softkeyBar button {
+    color: rgb(168, 131, 30);
+    width: 32%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#controls, #benchmark_controls {
+    display: none;
+    position: absolute;
+    width: 240px;
+    height: 320px;
+    left: 0;
+    top: 0;
+}
+
+#controls .landscape, #benchmark_controls .landscape {
+    display: none;
+}
+
+body.withAd #controls, body.withAd #benchmark_controls {
+    top: -30px;
+}
+
+#viewLeaderboard #lb_message {
+    text-align: center;
+    color: #60ff00;
+}
+
+#viewLeaderboard #lb_message.error {
+    color: #ff2d00;
+}
+
+#lb_list h2 {
+    margin: 0;
+    color: white;
+}
+
+#lb_list div {
+    font-size: 0.9em;
+    background-color: rgb(48, 19, 32);
+    text-align: center;
+}
+
+#lb_list div.score {
+    margin-bottom: 4%;
+    color: grey;
+}
+
+#lb_list div.score table {
+    width: 100%;
+}
+
+#lb_list div.score .you {
+    color: white;
+    color: #60ff00;
+}
+
+#onlineLobby fieldset {
+    width: 98%;
+    background-color: rgb(48, 19, 32);
+    border: 1px solid rgb(80, 15, 44);
+}
+
+#onlineLobby fieldset .navItem {
+    margin: 0;
+}
+
+#onlineLobby legend {
+    width: 30%;
+    height: 1.2em;
+    line-height: 1.2em;
+    padding-left: 0.2em;
+}
+
+#onlineLobby select {
+    width: 70%;
+}
+
+#lobby_playerCount, #lobby_playerName, #lobby_message {
+    text-align: center;
+    float: none;
+    clear: left;
+}
+
+#lobby_playerCount {
+    font-size: 0.8em;
+}
+
+#lobby_playerName {
+    height: 1.1em;
+}
+
+#lobby_message {
+    font-size: 0.8em;
+    color: rgb(168, 131, 30);
+    border: 1px solid rgb(168, 131, 30);
+}
+
+#lobby_list {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.6em;
+    line-height: 1.1em;
+    text-align: center;
+    color: #0c0;
+    background-color: rgb(0, 54, 0);
+    width: 100%;
+}
+
+#lobby_list th {
+    border-bottom: 1px solid #0c0;
+}
+
+#lobby_list tr.navItem {
+    color: #0c0;
+    background: none;
+    display: table-row;
+    float: none;
+}
+
+#lobby_list tr.selected {
+    background-color: #060;
+}
+
+#lobby_list td.navItem {
+    color: #0c0;
+    background: none;
+    display: table-cell;
+    float: none;
+    overflow: hidden;
+}
+
+#lobby_list td.disabled {
+    color: #060;
+}
+
+#lobby_list .navItem:focus {
+    color: rgb(0, 40, 0);
+    background-color: #0c0;
+}
+
+#lobby_list #gameStats.navItem:focus {
+    color: #0c0;
+    background-color: #060;
+}
+
+#gameStats td {
+    border-style: solid;
+    border-color: #0c0;
+    border-width: 0 1px 1px 1px;
+    text-align: left;
+}
+
+#gameStats #player_list {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+#gameStats #player_list .player {
+    float: left;
+    display: flex;
+    height: 32px;
+    width: 48%;
+    overflow: hidden;
+    margin: 0 1% 1% 1%;
+    background-color: rgb(0, 80, 0);
+}
+
+#gameStats #player_list .name {
+    flex-grow: 1;
+    word-break: keep-all;
+    padding-top: 0.4em;
+}
+
+#gameStats #join_button {
+    display: block;
+    float: right;
+    width: 40%;
+    padding: 2px;
+    border: 1px solid #0c0;
+    text-align: center;
+}
+
+#lobby_list .navItem:focus #join_button {
+    color: rgb(0, 40, 0);
+    border: 1px solid rgb(0, 40, 0);
+    background-color: #0c0;
+}
+
+#lobby_badges legend {
+    width: 100%;
+    clear: left;
+}
+
+#lobby_badges .lobby_badge {
+    float: left;
+    width: 50%;
+    text-align: center;
+    line-height: 0.3em;
+    border: 1px solid rgb(168, 131, 30);
+}
+
+#lobby_badges .lobby_badge span {
+    font-size: 0.8em;
+    line-height: 1.2em;
+}
+
+#gameStats #join_button.locked {
+    background-color: rgb(0, 128, 0);
+}
+
+#gameStats #refresh_button {
+    display: block;
+    float: left;
+    width: 60%;
+    padding: 2px;
+    color: rgb(0, 40, 0);
+    border: 1px solid #0c0;
+    background-color: #0c0;
+}
+
+#lobby_list .navItem:focus #refresh_button {
+    display: none;
+}
+
+#systemMessage {
+    display: none;
+    font-family: AeroviasBrasilNF, sans-serif;
+    text-align: center;
+    font-size: 0.9em;
+    padding: 2px;
+    position: fixed;
+    top: 100px;
+    left: 10px;
+    width: 220px;
+    min-height: 30px;
+    background-color: black;
+    border: 2px solid white;
+    z-index: 999;
+}
+
+#systemMessage.warning {
+    border-color: orange;
+}
+
+#systemMessage.critical {
+    border-color: red;
+}
